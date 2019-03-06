@@ -7,11 +7,8 @@
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
-  <ion-button (click)="goToDescricao()">{{instalacao.nome}}</ion-button>
-  <ion-input #name type="text"></ion-input>
-  <ion-button (click)="changeName(name.value)">Go!</ion-button>
+  
+  <ion-button (click)="list()">Atualizar</ion-button>
   <ion-list>
     <ion-item *ngFor='let instalacao of instalacoes' (click)="goToDescricao(instalacao.id)">
       {{instalacao.tipo}} N° {{instalacao.id}}

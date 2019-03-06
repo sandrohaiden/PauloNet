@@ -9,7 +9,7 @@ import { Http } from '@angular/http';
 export class InstalacaoService {
 
   public instalacao = new Instalacao();
-  public url = 'http://10.0.0.104:3000/';
+  public url = 'http://10.0.0.107:3000/';
 
   public messageSource = new BehaviorSubject(this.instalacao);
   currentMessage = this.messageSource.asObservable();
