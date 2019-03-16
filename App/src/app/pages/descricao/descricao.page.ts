@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import Instalacao from 'src/model/instalacao';
-import { InstalacaoService } from 'src/app/services/instalacao.service';
+import Chamado from 'src/model/chamado';
+import { ChamadoService } from 'src/app/services/chamado.service';
 import { NavController } from '@ionic/angular';
 
 @Component({
@@ -9,20 +9,20 @@ import { NavController } from '@ionic/angular';
   styleUrls: ['./descricao.page.scss'],
 })
 export class DescricaoPage implements OnInit {
-  public instalacao: Instalacao;
+  public chamado: Chamado;
 
-  constructor(public navCtrl: NavController, public instalacaoService: InstalacaoService) { }
+  constructor(public navCtrl: NavController, public chamadoService: ChamadoService) { }
 
   ngOnInit() {
-    this.instalacaoService.currentMessage.subscribe(inst => this.instalacao = inst);
+    this.chamadoService.currentMessage.subscribe(inst => this.chamado = inst);
     this.list();
   }
 
   list(){
-    return this.instalacaoService.getInstalacao()
+    return this.chamadoService.getChamado()
     .subscribe(resposta => {
       console.log('dados da tabela:', resposta);
-      return this.instalacao = resposta.json()[0];
+      return this.chamado = resposta.json()[0];
     })
   }
 

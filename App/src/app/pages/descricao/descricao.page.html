@@ -1,10 +1,34 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>descricao</ion-title>
+    <ion-title>Chamado {{chamado.chamado}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-  {{instalacao.id}}
-  {{instalacao.login}}
+  Cliente: {{chamado.nome}}
+  <br>
+  Endereço: {{chamado.endereco}}, {{chamado.numero}}
+  <br>
+  Bairro: {{chamado.bairro}}
+  <span *ngIf="chamado.complemento != null">
+    <br>
+    Complemento: {{chamado.complemento}}
+  </span>
+  <br>
+  <br>
+  Plano: {{chamado.plano}}
+  <br>
+  Equipamento: {{chamado.equipamento}}
+  <br>
+  Comodato: {{chamado.comodato}}
+  <br>
+  <div class="obs">
+      <ion-label>Observação:</ion-label>
+      <br>
+  </div>
+  <ion-textarea
+  rows="4"
+  readonly
+  value = {{chamado.msg}}>
+  </ion-textarea>
 </ion-content>

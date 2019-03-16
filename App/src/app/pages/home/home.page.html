@@ -10,12 +10,16 @@
   
   <ion-button (click)="list()">Atualizar</ion-button>
   <ion-list>
-    <ion-item *ngFor='let instalacao of instalacoes' (click)="goToDescricao(instalacao.id)">
-      {{instalacao.tipo}} N° {{instalacao.id}}
-      <br>
-      {{instalacao.nome}}
-      <br>
-      {{instalacao.visita}}
+    <ion-item *ngFor='let chamado of chamados' (click)="goToDescricao(chamado.id)">
+      <div>
+        {{chamado.assunto}}
+        <br>
+        {{chamado.nome}}
+        <br>
+        {{chamado.bairro}}
+        <br>
+        {{chamado.visita}}
+      </div>
     </ion-item>
   </ion-list>
 </ion-content>

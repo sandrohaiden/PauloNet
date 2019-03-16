@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import Instalacao from 'src/model/instalacao';
+import Chamado from 'src/model/chamado';
 import { NavController } from '@ionic/angular';
-import { InstalacaoService } from 'src/app/services/instalacao.service';
+import { ChamadoService } from 'src/app/services/chamado.service';
 
 @Component({
   selector: 'app-home',
@@ -9,31 +9,31 @@ import { InstalacaoService } from 'src/app/services/instalacao.service';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  public instalacao: Instalacao;
-  public instalacoes: Instalacao[]=[];
+  public chamado: Chamado;
+  public chamados: Chamado[]=[];
 
-  constructor(public navCtrl: NavController, public instalacaoService: InstalacaoService){}
+  constructor(public navCtrl: NavController, public chamadoService: ChamadoService){}
 
   ngOnInit(){
-    this.instalacaoService.currentMessage.subscribe(inst => this.instalacao = inst);
+    this.chamadoService.currentMessage.subscribe(cham => this.chamado = cham);
     this.list();
   }
 
-  changeID(inst){
-    this.instalacao.id = inst
-    this.instalacaoService.changeMessage(this.instalacao);
+  changeID(cham){
+    this.chamado.id = cham
+    this.chamadoService.changeMessage(this.chamado);
   }
 
-  goToDescricao(inst){
-    this.changeID(inst);
+  goToDescricao(cham){
+    this.changeID(cham);
     this.navCtrl.navigateForward('/descricao');
   }
 
   list(){
-    return this.instalacaoService.getInstalacoes()
+    return this.chamadoService.getChamados()
     .subscribe(resposta => {
       console.log('dados da tabela:', resposta);
-      return this.instalacoes = resposta.json();
+      return this.chamados = resposta.json();
     })
   }
 }

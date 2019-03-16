@@ -13,7 +13,7 @@ var connection = mysql.createConnection({
   host : "10.0.0.120",
   user : "sandro",
   password : "root",
-  database : "mkradius"
+  database : "app"
 });
 
 connection.connect(function(err) {
@@ -25,7 +25,7 @@ connection.connect(function(err) {
   console.log('connected as id ' + connection.threadId);
 });
 
-var indexRouter = require('./routes/instalacao')(connection);
+var indexRouter = require('./routes/atendimento')(connection);
 
 var app = express();
 
