@@ -7,8 +7,16 @@
 </ion-header>
 
 <ion-content padding>
-  
-  <ion-button (click)="list()">Atualizar</ion-button>
+  <ion-grid>
+    <ion-row>
+        <ion-col>
+          <ion-button (click)="list()">Atualizar</ion-button>
+        </ion-col>
+        <ion-col class="right">
+          <ion-button color="danger" (click)="fechar()">Fechar</ion-button>
+        </ion-col>
+    </ion-row>
+  </ion-grid>  
   <ion-list>
     <ion-item *ngFor='let chamado of chamados' (click)="goToDescricao(chamado.id)">
       <div>

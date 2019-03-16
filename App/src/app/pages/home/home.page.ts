@@ -36,4 +36,8 @@ export class HomePage {
       return this.chamados = resposta.json();
     })
   }
+
+  fechar(){
+    navigator[`app`].exitApp();
+  }
 }
