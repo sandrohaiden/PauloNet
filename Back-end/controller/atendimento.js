@@ -4,10 +4,9 @@ module.exports = (connection)=>{
 
     async function get(req, res, next){
         var result = await consulta.execQuery('call sp_consultaatendimentos()');
-       /* var result = await consulta.execQuery(`select id, nome, DATE_FORMAT(visita, '%m/%d/%Y %H:%i') 'visita', assunto from sis_suporte
-        union all
-        select id, nome, DATE_FORMAT(visita, '%m/%d/%Y %H:%i') 'visita', "" from sis_solic`);
-        //res.header("Access-Control-Allow-Headers", "X-Requested-With, Content-Type");*/
+        for(r of result){
+            r.msg = await consulta.execQuery('call sp_consultanotas(?)',[r.chamado]);
+        }
         res.send(result);
     }
 
@@ -16,5 +15,10 @@ module.exports = (connection)=>{
         res.send(result);
     }
 
-    return {get: get, getChamadoById: getChamadoById};
+    async function post(req, res, next){
+        await consulta.execQuery('call sp_fechamento(?,?)', [req.params.chamado, req.body.texto]);
+        res.send("ok");
+    }
+
+    return {get: get, getChamadoById: getChamadoById, post: post};
 }

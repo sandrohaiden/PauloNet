@@ -29,4 +29,9 @@ export class ChamadoService {
     console.log(this.url + this.chamado.id);
     return this.http.get(this.url + this.chamado.id);
   }
+
+  fecharChamado(texto: any, chamado: string){
+    return this.http.post(this.url + chamado, {texto}).subscribe((data: any) =>{
+    });
+  }
 }

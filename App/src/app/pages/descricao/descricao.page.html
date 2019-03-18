@@ -22,13 +22,19 @@
   <br>
   Comodato: {{chamado.comodato}}
   <br>
-  <div class="obs">
-      <ion-label>Observação:</ion-label>
+  <br>
+  <div *ngFor = "let mss of chamado.msg; let i = index" [attr.data-index]="i">
+    <div class="nota">
+      <ion-label>Observação {{i + 1}}:</ion-label>
       <br>
+    </div>
+    <ion-textarea
+    rows="4"
+    readonly
+    value = {{mss.msg}}>
+    </ion-textarea>
   </div>
-  <ion-textarea
-  rows="4"
-  readonly
-  value = {{chamado.msg}}>
-  </ion-textarea>
+  <div class="footer">
+      <ion-button (click)="fechar()">Finalizar</ion-button>
+  </div>
 </ion-content>

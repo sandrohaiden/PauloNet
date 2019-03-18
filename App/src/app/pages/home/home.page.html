@@ -18,7 +18,7 @@
     </ion-row>
   </ion-grid>  
   <ion-list>
-    <ion-item *ngFor='let chamado of chamados' (click)="goToDescricao(chamado.id)">
+    <ion-item *ngFor='let chamado of chamados' (click)="goToDescricao(chamado)">
       <div>
         {{chamado.assunto}}
         <br>

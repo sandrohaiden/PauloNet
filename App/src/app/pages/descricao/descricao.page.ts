@@ -15,7 +15,7 @@ export class DescricaoPage implements OnInit {
 
   ngOnInit() {
     this.chamadoService.currentMessage.subscribe(inst => this.chamado = inst);
-    this.list();
+    console.log(this.chamado);
   }
 
   list(){
@@ -24,6 +24,10 @@ export class DescricaoPage implements OnInit {
       console.log('dados da tabela:', resposta);
       return this.chamado = resposta.json()[0];
     })
+  }
+
+  fechar(){
+    this.navCtrl.navigateForward("/fechamento");
   }
 
 }

@@ -19,13 +19,13 @@ export class HomePage {
     this.list();
   }
 
-  changeID(cham){
-    this.chamado.id = cham
+  changeObj(cham){
+    this.chamado = cham
     this.chamadoService.changeMessage(this.chamado);
   }
 
   goToDescricao(cham){
-    this.changeID(cham);
+    this.changeObj(cham);
     this.navCtrl.navigateForward('/descricao');
   }
 

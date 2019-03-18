@@ -9,5 +9,7 @@ module.exports = (connection) => {
 
   router.get('/:id', controller.getChamadoById);
 
+  router.post('/:chamado', controller.post);
+
   return router;
 }
