@@ -21,6 +21,6 @@ export class FechamentoPage implements OnInit {
 
   concluir(){
     this.chamadoService.fecharChamado(this.texto, this.chamado.chamado);
-    this.navCtrl.navigateRoot('/home');
+    this.navCtrl.navigateBack('/home');
   }
 }
