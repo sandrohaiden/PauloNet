@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import Chamado from 'src/model/chamado';
 import { ChamadoService } from 'src/app/services/chamado.service';
 import { NavController } from '@ionic/angular';
+import { CallNumber } from '@ionic-native/call-number/ngx'
 
 @Component({
   selector: 'app-descricao',
@@ -11,7 +12,8 @@ import { NavController } from '@ionic/angular';
 export class DescricaoPage implements OnInit {
   public chamado: Chamado;
 
-  constructor(public navCtrl: NavController, public chamadoService: ChamadoService) { }
+  constructor(public navCtrl: NavController, public chamadoService: ChamadoService,
+    public cn: CallNumber) { }
 
   ngOnInit() {
     this.chamadoService.currentMessage.subscribe(inst => this.chamado = inst);
@@ -28,6 +30,10 @@ export class DescricaoPage implements OnInit {
 
   fechar(){
     this.navCtrl.navigateForward("/fechamento");
+  }
+
+  call(n){
+    this.cn.callNumber(n, true);
   }
 
 }

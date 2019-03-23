@@ -1,5 +1,8 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+        <ion-back-button></ion-back-button>
+    </ion-buttons>
     <ion-title>Chamado {{chamado.chamado}}</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -13,6 +16,15 @@
   <span *ngIf="chamado.complemento != null">
     <br>
     Complemento: {{chamado.complemento}}
+  </span>
+  <br>
+  <br>
+  <span *ngIf="chamado.celular != null">
+      Contato 1: <a (click)="call(chamado.celular)">{{chamado.celular}}</a>
+  </span>
+  <br>
+  <span *ngIf="chamado.celular2 != null">
+      Contato 2: <a (click)="call(chamado2.celular)">{{chamado2.celular}}</a>
   </span>
   <br>
   <br>

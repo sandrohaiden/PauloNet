@@ -11,6 +11,7 @@ import { NavController } from '@ionic/angular';
 export class FechamentoPage implements OnInit {
   public texto: string;
   public chamado: Chamado;
+  public chamados: Chamado[];
   constructor(public chamadoService: ChamadoService, public navCtrl: NavController) { }
 
   ngOnInit() {
@@ -20,5 +21,6 @@ export class FechamentoPage implements OnInit {
 
   concluir(){
     this.chamadoService.fecharChamado(this.texto, this.chamado.chamado);
+    this.navCtrl.navigateRoot('/home');
   }
 }

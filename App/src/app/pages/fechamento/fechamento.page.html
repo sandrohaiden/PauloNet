@@ -1,11 +1,18 @@
 <ion-header>
   <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button></ion-back-button>
+      </ion-buttons>
     <ion-title>fechamento</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-    <ion-textarea [(ngModel)]="texto" text-left></ion-textarea>
+    <ion-card>
+      <ion-card-content>
+          <ion-textarea [(ngModel)]="texto" text-left placeholder="Digite aqui..."></ion-textarea>
+      </ion-card-content>
+    </ion-card>
     <br>
     <br>
     <ion-button (click)="concluir()">Concluir</ion-button>

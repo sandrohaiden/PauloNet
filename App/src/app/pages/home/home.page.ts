@@ -19,6 +19,10 @@ export class HomePage {
     this.list();
   }
 
+  ionViewWillEnter(){
+    this.list();
+  }
+
   changeObj(cham){
     this.chamado = cham
     this.chamadoService.changeMessage(this.chamado);

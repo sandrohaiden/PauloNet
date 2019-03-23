@@ -9,6 +9,7 @@ import { Http } from '@angular/http';
 export class ChamadoService {
 
   public chamado = new Chamado();
+  public chamados: Chamado [];
   public url = 'http://10.0.0.107:3000/';
 
   public messageSource = new BehaviorSubject(this.chamado);
@@ -18,7 +19,6 @@ export class ChamadoService {
 
   changeMessage(chamado: Chamado) {
     this.messageSource.next(chamado);
-    console.log(this.chamado)
   }
 
   getChamados(){
