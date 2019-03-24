@@ -13,7 +13,7 @@ BEGIN
     mkradius.sis_cliente.celular, mkradius.sis_cliente.celular2,
     mkradius.sis_cliente.login, mkradius.sis_cliente.senha,
     mkradius.sis_cliente.equipamento, mkradius.sis_cliente.comodato,
-	mkradius.sis_func.nome 'tec'
+	mkradius.sis_cliente.fone, mkradius.sis_func.nome 'tec'
     FROM mkradius.sis_suporte
 	INNER JOIN mkradius.sis_cliente ON mkradius.sis_cliente.login = mkradius.sis_suporte.login
 	INNER JOIN mkradius.sis_func ON mkradius.sis_suporte.tecnico = mkradius.sis_func.id
@@ -34,7 +34,7 @@ BEGIN
     mkradius.sis_cliente.celular, mkradius.sis_cliente.celular2,
     mkradius.sis_cliente.login, mkradius.sis_cliente.senha,
     mkradius.sis_cliente.equipamento, mkradius.sis_cliente.comodato,
-	mkradius.sis_func.nome 'tec', mkradius.sis_msg.msg
+	mkradius.sis_cliente.fone, mkradius.sis_func.nome 'tec', mkradius.sis_msg.msg
     FROM mkradius.sis_suporte
 	INNER JOIN mkradius.sis_cliente ON mkradius.sis_cliente.login = mkradius.sis_suporte.login
 	INNER JOIN mkradius.sis_func ON mkradius.sis_suporte.tecnico = mkradius.sis_func.id

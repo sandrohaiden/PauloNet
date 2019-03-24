@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-        <ion-back-button></ion-back-button>
+      <ion-back-button></ion-back-button>
     </ion-buttons>
     <ion-title>Chamado {{chamado.chamado}}</ion-title>
   </ion-toolbar>
@@ -20,12 +20,29 @@
   <br>
   <br>
   <span *ngIf="chamado.celular != null">
-      Contato 1: <a (click)="call(chamado.celular)">{{chamado.celular}}</a>
+    <ion-grid>
+      <ion-row>
+        <ion-col><ion-input value="{{chamado.celular}}" [(ngModel)]=chamado.celular></ion-input></ion-col>
+        <ion-col size="2"><ion-button (click)="call(chamado.celular)"><ion-icon name="call"></ion-icon></ion-button></ion-col>
+      </ion-row>
+    </ion-grid>
   </span>
-  <br>
   <span *ngIf="chamado.celular2 != null">
-      Contato 2: <a (click)="call(chamado2.celular)">{{chamado2.celular}}</a>
+    <ion-grid>
+      <ion-row>
+        <ion-col><ion-input value="{{chamado.celular2}}" [(ngModel)]=chamado.celular2></ion-input></ion-col>
+        <ion-col size="2"><ion-button><ion-icon name="call"></ion-icon></ion-button></ion-col>
+      </ion-row>
+    </ion-grid>
   </span>
+  <span *ngIf="chamado.fone != null">
+      <ion-grid>
+        <ion-row>
+          <ion-col><ion-input value="{{chamado.fone}}" [(ngModel)]=chamado.fone></ion-input></ion-col>
+          <ion-col size="2"><ion-button><ion-icon name="call"></ion-icon></ion-button></ion-col>
+        </ion-row>
+      </ion-grid>
+    </span>
   <br>
   <br>
   Plano: {{chamado.plano}}
@@ -46,7 +63,8 @@
     value = {{mss.msg}}>
     </ion-textarea>
   </div>
-  <div class="footer">
-      <ion-button (click)="fechar()">Finalizar</ion-button>
-  </div>
 </ion-content>
+
+<ion-footer>
+  <ion-button (click)="fechar()">Finalizar</ion-button>
+</ion-footer>
