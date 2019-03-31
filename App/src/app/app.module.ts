@@ -11,10 +11,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpModule } from '@angular/http';
 import { CallNumber } from '@ionic-native/call-number/ngx';
 
+import { BrMaskerModule } from 'br-mask'
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpModule],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpModule, BrMaskerModule],
   providers: [
     StatusBar,
     SplashScreen,

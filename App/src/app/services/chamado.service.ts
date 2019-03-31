@@ -15,10 +15,17 @@ export class ChamadoService {
   public messageSource = new BehaviorSubject(this.chamado);
   currentMessage = this.messageSource.asObservable();
 
+  public fonteChamados = new BehaviorSubject<Chamado[]>(this.chamados);
+  chamadosAtual = this.fonteChamados.asObservable();
+
   constructor(public http: Http) { }
 
   changeMessage(chamado: Chamado) {
     this.messageSource.next(chamado);
+  }
+
+  changeChamados(chamado: Chamado[]) {
+    this.fonteChamados.next(chamado);
   }
 
   getChamados(){
@@ -32,6 +39,11 @@ export class ChamadoService {
 
   fecharChamado(texto: any, chamado: string){
     return this.http.post(this.url + chamado, {texto}).subscribe((data: any) =>{
+      this.getChamados().subscribe(chams=>{
+        let x = chams as any
+        console.log(JSON.parse(x._body));
+        this.changeChamados(chams.json());
+      })
     });
   }
 }

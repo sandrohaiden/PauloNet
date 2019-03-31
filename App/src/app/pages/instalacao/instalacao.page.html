@@ -1,0 +1,85 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Instalacao N. {{chamado.id}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  Cliente: {{chamado.nome}}
+  <br>
+  Endereço: {{chamado.endereco}}, {{chamado.numero}}
+  <br>
+  Bairro: {{chamado.bairro}}
+  <span *ngIf="chamado.complemento != null">
+    <br>
+    Complemento: {{chamado.complemento}}
+  </span>
+  <br>
+  <br>
+  <span *ngIf="chamado.celular != null">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-input value="{{chamado.celular}}" [(ngModel)]=chamado.celular></ion-input>
+        </ion-col>
+        <ion-col size="2">
+          <ion-button (click)="call(chamado.celular)">
+            <ion-icon name="call"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </span>
+  <span *ngIf="chamado.celular2 != null">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-input value="{{chamado.celular2}}" [(ngModel)]=chamado.celular2></ion-input>
+        </ion-col>
+        <ion-col size="2">
+          <ion-button>
+            <ion-icon name="call"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </span>
+  <span *ngIf="chamado.fone != null">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-input value="{{chamado.fone}}" [(ngModel)]=chamado.fone></ion-input>
+        </ion-col>
+        <ion-col size="2">
+          <ion-button>
+            <ion-icon name="call"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </span>
+  <br>
+  <br>
+  Plano: {{chamado.plano}}
+  <br>
+  Equipamento: {{chamado.equipamento}}
+  <br>
+  Comodato: {{chamado.comodato}}
+  <br>
+  <br>
+  <div *ngFor="let mss of chamado.msg; let i = index" [attr.data-index]="i">
+    <div class="nota">
+      <ion-label>Observação</ion-label>
+      <br>
+    </div>
+    <ion-textarea rows="4" readonly value={{mss.msg}}>
+    </ion-textarea>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <ion-button (click)="fechar()">Finalizar</ion-button>
+</ion-footer> 

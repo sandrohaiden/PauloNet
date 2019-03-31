@@ -6,10 +6,10 @@ import { CallNumber } from '@ionic-native/call-number/ngx'
 
 @Component({
   selector: 'app-descricao',
-  templateUrl: './descricao.page.html',
-  styleUrls: ['./descricao.page.scss'],
+  templateUrl: './chamado-descricao.page.html',
+  styleUrls: ['./chamado-descricao.page.scss'],
 })
-export class DescricaoPage implements OnInit {
+export class ChamadoDescricaoPage implements OnInit {
   public chamado: Chamado;
 
   constructor(public navCtrl: NavController, public chamadoService: ChamadoService,

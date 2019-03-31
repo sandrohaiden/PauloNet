@@ -9,23 +9,25 @@
 <ion-content padding>
   <ion-grid>
     <ion-row>
-        <ion-col>
-          <ion-button (click)="list()">
-            <ion-icon name="refresh"></ion-icon>
-            &nbsp; Atualizar
-          </ion-button>
-        </ion-col>
-        <ion-col class="right">
-          <ion-button color="danger" (click)="fechar()">
-            <ion-icon name="close"></ion-icon>
-            &nbsp;Fechar
-          </ion-button>
-        </ion-col>
+      <ion-col>
+        <ion-button (click)="list()">
+          <ion-icon name="refresh"></ion-icon>
+          &nbsp; Atualizar
+        </ion-button>
+      </ion-col>
+      <ion-col class="right">
+        <ion-button color="danger" (click)="fechar()">
+          <ion-icon name="close"></ion-icon>
+          &nbsp;Fechar
+        </ion-button>
+      </ion-col>
     </ion-row>
-  </ion-grid>  
+  </ion-grid>
   <ion-list>
-    <ion-item *ngFor='let chamado of chamados' (click)="goToDescricao(chamado)">
-      <ion-card>
+    <span *ngFor='let chamado of chamados'>
+
+      <ion-item *ngIf='chamado.assunto !== "instalacao"'>
+        <ion-card (click)="goToDescricao(chamado)">
           <ion-card-content>
             <div>
               {{chamado.assunto}}
@@ -36,8 +38,26 @@
               <br>
               {{chamado.visita}}
             </div>
-        </ion-card-content>
-      </ion-card>
-    </ion-item>
+          </ion-card-content>
+        </ion-card>
+      </ion-item>
+
+      <ion-item *ngIf='chamado.assunto == "instalacao"'>
+        <ion-card (click)="goToInstalacao(chamado)">
+          <ion-card-content>
+            <div>
+              {{chamado.assunto}}
+              <br>
+              {{chamado.nome}}
+              <br>
+              {{chamado.bairro}}
+              <br>
+              {{chamado.visita}}
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </ion-item>
+      
+    </span>
   </ion-list>
 </ion-content>

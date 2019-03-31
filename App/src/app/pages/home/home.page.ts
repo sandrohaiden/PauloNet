@@ -16,10 +16,7 @@ export class HomePage {
 
   ngOnInit(){
     this.chamadoService.currentMessage.subscribe(cham => this.chamado = cham);
-    this.list();
-  }
-
-  ionViewWillEnter(){
+    this.chamadoService.chamadosAtual.subscribe(chams => this.chamados = chams);
     this.list();
   }
 
@@ -30,7 +27,12 @@ export class HomePage {
 
   goToDescricao(cham){
     this.changeObj(cham);
-    this.navCtrl.navigateForward('/descricao');
+    this.navCtrl.navigateForward('chamado/descricao');
+  }
+
+  goToInstalacao(cham){
+    this.changeObj(cham);
+    this.navCtrl.navigateForward('/instalacao');
   }
 
   list(){
