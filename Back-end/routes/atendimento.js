@@ -11,5 +11,7 @@ module.exports = (connection) => {
 
   router.post('/:chamado', controller.post);
 
+  router.post('/instalacao/:chamado', controller.postInst);
+
   return router;
 }

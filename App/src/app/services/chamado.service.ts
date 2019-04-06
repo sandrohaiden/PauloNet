@@ -46,4 +46,14 @@ export class ChamadoService {
       })
     });
   }
+
+  finalizarInstalacao(tx: string){
+    return this.http.post(this.url + 'instalacao/'+this.chamado.id, {tx}).subscribe((data: any) =>{
+      this.getChamados().subscribe(chams=>{
+        let x = chams as any
+        console.log(JSON.parse(x._body));
+        this.changeChamados(chams.json());
+      })
+    });
+  }
 }

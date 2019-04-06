@@ -86,7 +86,7 @@ END#
 DELIMITER ;
 
 DELIMITER #
-CREATE PROCEDURE sp_finalizaristalacao(p_chamado varchar(255), p_texto varchar(1000))
+CREATE PROCEDURE sp_finalizarinstalacao(p_id int, p_texto text)
 BEGIN
 	
     INSERT INTO mkradius.sis_cliente
@@ -126,6 +126,9 @@ BEGIN
     'outros'/*ssid*/, 'nenhum'/*vendedor*/,'outros'/*grupo*/, 12/*mbdisco*/, now()/*rem_obs*/,
     5/*dias_corte*/, 'nao'/*geranfe*/, 3/*tipo_pessoa*/, now()/*data_desbloq*/, 3/*tipo_cliente*/,
     uuid()/*uuid_cliente*/, 'carne'/*carne*/, 'ppoe'/*tipo*/
-    FROM mkradius.sis_solic;
+    FROM mkradius.sis_solic
+    WHERE mkradius.sis_solic.id = p_id;
+    
+    UPDATE mkradius.sis_solic SET obs = obs + p_texto WHERE id = p_id;
 END#
 DELIMITER ;

@@ -6,7 +6,8 @@ const routes: Routes = [
   { path: 'home', loadChildren: './pages/home/home.module#HomePageModule' },
   { path: 'chamado/descricao', loadChildren: './pages/chamado-descricao/chamado-descricao.module#DescricaoChamadoPageModule' },
   { path: 'fechamento', loadChildren: './pages/fechamento/fechamento.module#FechamentoPageModule' },
-  { path: 'instalacao', loadChildren: './pages/instalacao/instalacao.module#InstalacaoPageModule' },
+  { path: 'instalacao', loadChildren: './pages/instalacao-descricao/instalacao-descricao.module#InstalacaoDescricaoPageModule' },
+  { path: 'finalizacao', loadChildren: './pages/instalacao-finalizacao/instalacao-finalizacao.module#InstalacaoFinalizacaoPageModule' },
 ];
 
 @NgModule({

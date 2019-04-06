@@ -26,5 +26,10 @@ module.exports = (connection)=>{
         res.send("ok");
     }
 
-    return {get: get, getChamadoById: getChamadoById, post: post};
+    async function postInst(req, res, next){
+        await consulta.execQuery('sp_finalizarinstalacao(?, ?)', [req.params.id, req.body.tx]);
+        res.send("ok");
+    }
+
+    return {get: get, getChamadoById: getChamadoById, post: post, postInst: postInst};
 }
