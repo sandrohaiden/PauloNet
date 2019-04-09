@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import Chamado from 'src/model/chamado';
-import { NavController } from '@ionic/angular';
+import { NavController, Platform } from '@ionic/angular';
 import { ChamadoService } from 'src/app/services/chamado.service';
 
 @Component({
@@ -12,12 +12,14 @@ export class HomePage {
   public chamado: Chamado;
   public chamados: Chamado[]=[];
 
-  constructor(public navCtrl: NavController, public chamadoService: ChamadoService){}
+  constructor(public navCtrl: NavController, public chamadoService: ChamadoService,
+    private plat: Platform){}
 
   ngOnInit(){
     this.chamadoService.currentMessage.subscribe(cham => this.chamado = cham);
     this.chamadoService.chamadosAtual.subscribe(chams => this.chamados = chams);
     this.list();
+    //this.plat.backButton()
   }
 
   changeObj(cham){

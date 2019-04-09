@@ -37,7 +37,7 @@ export class InstalacaoFinalizacaoPage implements OnInit {
     let tx = '\nDownload: '+vl.download+'  |  Upload:'+vl.upload
     +'  |  Ping: '+vl.ping+'  |  Cabo Início: '+vl.inicial+'  |  Cabo fim: '+vl.final;
 
-    this.chamadoService.finalizarInstalacao(tx);
+    this.chamadoService.finalizarInstalacao(tx, this.chamado.id);
     this.navCtrl.navigateRoot('/home');
   }
 

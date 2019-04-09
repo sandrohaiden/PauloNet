@@ -25,6 +25,7 @@ export class InstalacaoDescricaoPage implements OnInit {
   }
 
   fechar(){
+    this.chamadoService.liberarCliente(this.chamado.id);
     this.navCtrl.navigateForward("/finalizacao");
   }
 
