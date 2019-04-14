@@ -26,8 +26,15 @@ module.exports = (connection) => {
     }
 
     async function postInst(req, res, next) {
-        await consulta.execQuery('call sp_liberarcliente(?)', [req.params.chamado]);
-        res.send("ok");
+        try {
+            await consulta.execQuery('call sp_liberarcliente(?)', [req.params.chamado]);
+            res.send('Cliente liberado com sucesso!');
+        } catch (error) {
+            if (error.message.indexOf('ERR_DUP_ENTRY'))
+                res.send({ msg: 'O cliente já estava liberada!' });
+            else
+                res.send({ msg: 'Erro ao liberar cliente :(' });
+        }
     }
 
     async function postInst2(req, res, next) {
@@ -35,5 +42,5 @@ module.exports = (connection) => {
         res.send("ok");
     }
 
-    return { get: get, getChamadoById: getChamadoById, post: post, postInst: postInst, postInst2: postInst2};
+    return { get: get, getChamadoById: getChamadoById, post: post, postInst: postInst, postInst2: postInst2 };
 }

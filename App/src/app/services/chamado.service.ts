@@ -48,8 +48,7 @@ export class ChamadoService {
   }
 
   liberarCliente(id: number){
-    return this.http.post(this.url + 'instalacao/' + id,{}).subscribe((data:any)=>{
-    });
+    return this.http.post(this.url + 'instalacao/' + id,{});
   }
 
   finalizarInstalacao(tx: string, id: number){

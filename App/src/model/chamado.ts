@@ -3,7 +3,7 @@ import { logging } from 'protractor';
 export default class Chamado{
     id: number
     chamado: string
-    tipo: string
+    assunto: string
     nome: string
     visita: string
     bairro: string

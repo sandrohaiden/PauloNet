@@ -13,10 +13,12 @@ BEGIN
     mkradius.sis_solic.celular, mkradius.sis_solic.celular2,
     mkradius.sis_solic.login, mkradius.sis_solic.senha,
     mkradius.sis_solic.equipamento, mkradius.sis_solic.comodato,
-    mkradius.sis_solic.telefone 'fone', mkradius.sis_solic.vendedor
+    mkradius.sis_solic.telefone 'fone', mkradius.sis_solic.vendedor,
+    DATE_FORMAT(mkradius.sis_solic.visita, '%H') 'hora'
     FROM mkradius.sis_solic
-    WHERE mkradius.sis_solic.status = 'aberto'
+    WHERE mkradius.sis_solic.status != 'concluido'
     AND mkradius.sis_solic.tecnico = p_tec
+    AND DATE_FORMAT(mkradius.sis_solic.visita, '%Y-%m-%d') LIKE curdate()
     
     UNION ALL
 
@@ -27,12 +29,14 @@ BEGIN
     mkradius.sis_cliente.celular, mkradius.sis_cliente.celular2,
     mkradius.sis_cliente.login, mkradius.sis_cliente.senha,
     mkradius.sis_cliente.equipamento, mkradius.sis_cliente.comodato,
-	mkradius.sis_cliente.fone, mkradius.sis_func.nome 'tec'
+	mkradius.sis_cliente.fone, mkradius.sis_func.nome 'tec',
+    DATE_FORMAT(mkradius.sis_suporte.visita, '%H') 'hora'
     FROM mkradius.sis_suporte
 	INNER JOIN mkradius.sis_cliente ON mkradius.sis_cliente.login = mkradius.sis_suporte.login
 	INNER JOIN mkradius.sis_func ON mkradius.sis_suporte.tecnico = mkradius.sis_func.id
 	WHERE mkradius.sis_suporte.status = 'aberto' AND mkradius.sis_func.nome = p_tec
-    AND DATE_FORMAT(mkradius.sis_suporte.visita, '%Y-%m-%d') LIKE curdate();
+    AND DATE_FORMAT(mkradius.sis_suporte.visita, '%Y-%m-%d') LIKE curdate()
+    ORDER BY hora asc;
 END#
 DELIMITER ;
 CALL sp_consultaatendimentos('JHOSEFE');
@@ -55,7 +59,7 @@ BEGIN
     WHERE mkradius.sis_suporte.id = p_id;
 END#
 DELIMITER ;
-CALL sp_consultaatendimento(745);
+CALL sp_consultaatendimento(3910);
 
 DELIMITER #
 CREATE PROCEDURE sp_consultanotas(p_chamado varchar(255))
@@ -79,10 +83,10 @@ CALL sp_consultaobs('1');
 
 
 DELIMITER #
-CREATE PROCEDURE sp_fecharchamado(p_chamado varchar(255), p_texto varchar(1000))
+CREATE PROCEDURE sp_fecharchamado(p_id varchar(255), p_texto varchar(1000))
 BEGIN
 	UPDATE mkradius.sis_suporte SET status = 'fechado', fechamento = now(),
-    motivo_fechar = p_texto WHERE mkradius.sis_suporte.chamado = p_chamado;
+    motivo_fechar = p_texto WHERE mkradius.sis_suporte.id = p_id;
 END#
 DELIMITER ;
 
@@ -131,7 +135,7 @@ BEGIN
     99/*mbdisco*/, now()/*rem_obs*/, 5/*dias_corte*/,
     'nao'/*geranfe*/, 3/*tipo_pessoa*/, now()/*data_desbloq*/,
     3/*tipo_cliente*/, uuid()/*uuid_cliente*/, 'carne'/*carne*/,
-    'ppoe'/*tipo*/, now()/*data_ins*/, 'nao'/*altsenha*/
+    'pppoe'/*tipo*/, now()/*data_ins*/, 'nao'/*altsenha*/
     FROM mkradius.sis_solic
     WHERE mkradius.sis_solic.id = p_id;
 END#
@@ -146,5 +150,18 @@ BEGIN
     mkradius.sis_solic.instalado = 'sim',
     mkradius.sis_solic.status = 'concluido'
     WHERE mkradius.sis_solic.id = p_id;
+END#
+DELIMITER ;
+
+DELIMITER #
+CREATE PROCEDURE sp_respondercancelamento(p_id int, p_chamado varchar(255), p_login varchar(15), p_texto text)
+BEGIN
+	UPDATE mkradius.sis_suporte SET
+    mkradius.sis_suporte.status = 'atendido',
+    mkradius.sis_suporte.reply = 'sim'
+    WHERE mkradius.sis_suporte.id = p_id;
+    
+    INSERT INTO mkradius.sis_msg(chamado, msg, login, atendente)
+    values (p_chamado, p_texto, p_login, p_login);
 END#
 DELIMITER ;

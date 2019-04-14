@@ -29,7 +29,11 @@ export class ChamadoDescricaoPage implements OnInit {
   }
 
   fechar(){
-    this.navCtrl.navigateForward("/fechamento");
+    console.log(this.chamado.assunto)
+    if(this.chamado.assunto == 'Cancelamento')
+      this.navCtrl.navigateForward("/cancelamento");
+    else
+      this.navCtrl.navigateForward("/fechamento");
   }
 
   call(n){

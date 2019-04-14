@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Cancelamento</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-radio-group [(ngModel)]="radioValue">
+      <ion-list-header>
+        <ion-label>Equipamento Retirado:</ion-label>
+      </ion-list-header>
+
+      <ion-item>
+        <ion-label>3000N</ion-label>
+        <ion-radio slot="start" value="3000N" checked></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>1000N</ion-label>
+        <ion-radio slot="start" value="1000N"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>240Slim</ion-label>
+        <ion-radio slot="start" value="240Slim"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Nenhum</ion-label>
+        <ion-radio slot="start" value="Nenhum"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-input placeholder='Digite outro modelo aqui' [(ngModel)]="outro"></ion-input>
+        <ion-radio slot="start" value='{{outro}}'></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+  </ion-list>
+
+  <br>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Relato do Técnico:</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-textarea [(ngModel)]="msg" text-left placeholder="Digite aqui..."></ion-textarea>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+
+<ion-footer>
+  <ion-button (click)="finalizar()">Finalizar</ion-button>
+</ion-footer>

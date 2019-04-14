@@ -8,6 +8,7 @@ const routes: Routes = [
   { path: 'fechamento', loadChildren: './pages/fechamento/fechamento.module#FechamentoPageModule' },
   { path: 'instalacao', loadChildren: './pages/instalacao-descricao/instalacao-descricao.module#InstalacaoDescricaoPageModule' },
   { path: 'finalizacao', loadChildren: './pages/instalacao-finalizacao/instalacao-finalizacao.module#InstalacaoFinalizacaoPageModule' },
+  { path: 'cancelamento', loadChildren: './pages/cancelamento-finalizacao/cancelamento-finalizacao.module#CancelamentoFinalizacaoPageModule' },
 ];
 
 @NgModule({
