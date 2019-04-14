@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import Chamado from 'src/model/chamado';
 import { NavController, Platform } from '@ionic/angular';
 import { ChamadoService } from 'src/app/services/chamado.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -14,12 +15,22 @@ export class HomePage {
 
   constructor(public navCtrl: NavController, public chamadoService: ChamadoService,
     private plat: Platform){}
+    private sub: Subscription;
 
   ngOnInit(){
     this.chamadoService.currentMessage.subscribe(cham => this.chamado = cham);
     this.chamadoService.chamadosAtual.subscribe(chams => this.chamados = chams);
     this.list();
-    //this.plat.backButton()
+  }
+
+  ionViewWillEnter(){
+    this.sub = this.plat.backButton.subscribe(()=>{
+      navigator[`app`].exitApp();
+    })
+  }
+
+  ionViewDidLeave(){
+    this.sub.unsubscribe;
   }
 
   changeObj(cham){

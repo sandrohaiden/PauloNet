@@ -25,7 +25,8 @@ connection.connect(function(err) {
   console.log('connected as id ' + connection.threadId);
 });
 
-var indexRouter = require('./routes/atendimento')(connection);
+var chamado = require('./routes/chamado')(connection);
+var instalacao = require('./routes/instalacao')(connection);
 
 var app = express();
 
@@ -37,7 +38,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
+app.use('/', chamado);
+app.use('/', instalacao);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

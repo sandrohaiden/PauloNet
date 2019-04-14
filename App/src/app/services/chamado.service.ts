@@ -29,7 +29,7 @@ export class ChamadoService {
   }
 
   getChamados(){
-    return this.http.get(this.url+'JHOSEFE');
+    return this.http.get(this.url+'chamados?name=JHOSEFE');
   }
 
   getChamado(){
@@ -37,8 +37,8 @@ export class ChamadoService {
     return this.http.get(this.url + this.chamado.id);
   }
 
-  fecharChamado(texto: any, chamado: string){
-    return this.http.post(this.url + chamado, {texto}).subscribe((data: any) =>{
+  fecharChamado(texto: any, id: number){
+    return this.http.post(this.url + 'chamados/' + id, {texto}).subscribe((data: any) =>{
       this.getChamados().subscribe(chams=>{
         let x = chams as any
         console.log(JSON.parse(x._body));

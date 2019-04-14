@@ -5,33 +5,36 @@
 </ion-header>
 
 <ion-content>
-  <form [formGroup]="formulario">
+  <form [formGroup]="formulario" (submit)="concluir()">
     <ion-item>
       <ion-label position="floating">Download (Mb/s)</ion-label>
       <ion-input name="download" formControlName="download" inputmode="numeric"
-        [brmasker]="{form: formulario.get('download'), mask: '00.00', len:5, type: 'num'}"></ion-input>
+        [brmasker]="{form: formulario.get('download'), mask: '00,00', len:5, type: 'num'}"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="floating">Upload (Mb/s)</ion-label>
-      <ion-input name="upload" formControlName="upload"
-        [brmasker]="{form: formulario.get('upload'), mask: '00.00', len:5, type: 'num'}"></ion-input>
+      <ion-input name="upload" formControlName="upload" inputmode="numeric"
+        [brmasker]="{form: formulario.get('upload'), mask: '00,00', len:5, type: 'num'}"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="floating">Ping (ms)</ion-label>
-      <ion-input name="ping" formControlName="ping"
+      <ion-input name="ping" formControlName="ping" inputmode="numeric"
         [brmasker]="{form: formulario.get('ping'), mask: '00000', len:5, type: 'num'}"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="floating">Cabo Inicial (Metros)</ion-label>
-      <ion-input name="inicial" formControlName="inicial"
+      <ion-input name="inicial" formControlName="inicial" inputmode="numeric"
         [brmasker]="{form: formulario.get('inicial'), mask: '00000', len:5, type: 'num'}"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="floating">Cabo Final (Metros)</ion-label>
-      <ion-input name="final" formControlName="final"
+      <ion-input name="final" formControlName="final" inputmode="numeric"
         [brmasker]="{form: formulario.get('final'), mask: '00000', len:5, type: 'num'}"></ion-input>
     </ion-item>
+    <button type="submit" style="visibility: hidden;width: 1px;height: 1px;padding: 0;margin: 0;"></button>
   </form>
-  <br>
-  <ion-button (click)="concluir()">Concluir</ion-button>
 </ion-content>
+
+<ion-footer>
+  <ion-button (click)="concluir()">Concluir</ion-button>
+</ion-footer>
