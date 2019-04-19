@@ -36,6 +36,7 @@ BEGIN
 	INNER JOIN mkradius.sis_func ON mkradius.sis_suporte.tecnico = mkradius.sis_func.id
 	WHERE mkradius.sis_suporte.status = 'aberto' AND mkradius.sis_func.nome = p_tec
     AND DATE_FORMAT(mkradius.sis_suporte.visita, '%Y-%m-%d') LIKE curdate()
+    AND mkradius.sis_suporte.assunto IN ('Cancelamento', 'Conexao')
     ORDER BY hora asc;
 END#
 DELIMITER ;

@@ -10,7 +10,7 @@ export class ChamadoService {
 
   public chamado = new Chamado();
   public chamados: Chamado [];
-  public url = 'http://10.0.0.109:3000/';
+  public url = 'http://10.0.0.107:3000/';
 
   public messageSource = new BehaviorSubject(this.chamado);
   currentMessage = this.messageSource.asObservable();
@@ -48,11 +48,23 @@ export class ChamadoService {
   }
 
   liberarCliente(id: number){
-    return this.http.post(this.url + 'instalacao/' + id,{});
+    return this.http.post(this.url + 'instalacao/step1/' + id,{});
   }
 
   finalizarInstalacao(tx: string, id: number){
-    return this.http.post(this.url + 'instalacao2/'+id, {tx}).subscribe((data: any) =>{
+    return this.http.post(this.url + 'instalacao/step2/'+id, {tx}).subscribe((data: any) =>{
+      this.getChamados().subscribe(chams=>{
+        let x = chams as any
+        console.log(JSON.parse(x._body));
+        this.changeChamados(chams.json());
+      })
+    });
+  }
+
+  responderCancelamento(body: any){
+    console.log(body);
+    return this.http.post(this.url + 'cancelamento/'+body.id, body)
+    .subscribe((data: any) =>{
       this.getChamados().subscribe(chams=>{
         let x = chams as any
         console.log(JSON.parse(x._body));

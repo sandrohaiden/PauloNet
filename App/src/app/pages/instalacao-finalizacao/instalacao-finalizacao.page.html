@@ -1,6 +1,9 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>instalacao-finalizacao</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Verificação da Instalação</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -8,27 +11,27 @@
   <form [formGroup]="formulario" (submit)="concluir()">
     <ion-item>
       <ion-label position="floating">Download (Mb/s)</ion-label>
-      <ion-input name="download" formControlName="download" inputmode="numeric"
+      <ion-input name="download" formControlName="download" inputmode="numeric" required
         [brmasker]="{form: formulario.get('download'), mask: '00,00', len:5, type: 'num'}"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="floating">Upload (Mb/s)</ion-label>
-      <ion-input name="upload" formControlName="upload" inputmode="numeric"
+      <ion-input name="upload" formControlName="upload" inputmode="numeric" required
         [brmasker]="{form: formulario.get('upload'), mask: '00,00', len:5, type: 'num'}"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="floating">Ping (ms)</ion-label>
-      <ion-input name="ping" formControlName="ping" inputmode="numeric"
+      <ion-input name="ping" formControlName="ping" inputmode="numeric" required
         [brmasker]="{form: formulario.get('ping'), mask: '00000', len:5, type: 'num'}"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="floating">Cabo Inicial (Metros)</ion-label>
-      <ion-input name="inicial" formControlName="inicial" inputmode="numeric"
+      <ion-input name="inicial" formControlName="inicial" inputmode="numeric" required 
         [brmasker]="{form: formulario.get('inicial'), mask: '00000', len:5, type: 'num'}"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="floating">Cabo Final (Metros)</ion-label>
-      <ion-input name="final" formControlName="final" inputmode="numeric"
+      <ion-input name="final" formControlName="final" inputmode="numeric" required
         [brmasker]="{form: formulario.get('final'), mask: '00000', len:5, type: 'num'}"></ion-input>
     </ion-item>
     <button type="submit" style="visibility: hidden;width: 1px;height: 1px;padding: 0;margin: 0;"></button>
@@ -36,5 +39,5 @@
 </ion-content>
 
 <ion-footer>
-  <ion-button (click)="concluir()">Concluir</ion-button>
+  <ion-button (click)='concluir()'>Concluir</ion-button>
 </ion-footer>

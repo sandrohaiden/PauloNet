@@ -27,6 +27,7 @@ connection.connect(function(err) {
 
 var chamado = require('./routes/chamado')(connection);
 var instalacao = require('./routes/instalacao')(connection);
+var cancelamento = require('./routes/cancelamento')(connection);
 
 var app = express();
 
@@ -40,6 +41,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', chamado);
 app.use('/', instalacao);
+app.use('/', cancelamento);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

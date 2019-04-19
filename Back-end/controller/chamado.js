@@ -3,7 +3,6 @@ module.exports = (connection) => {
     consulta.connection(connection);
 
     async function get(req, res, next) {
-        console.log(req.query.name);
         var result = await consulta.execQuery('call sp_consultaatendimentos(?)', [req.query.name]);
         for (r of result) {
             if (r.assunto != 'instalacao') {
@@ -22,8 +21,12 @@ module.exports = (connection) => {
     }
 
     async function post(req, res, next) {
-        await consulta.execQuery('call sp_fecharchamado(?,?)', [req.params.id, req.body.texto]);
-        res.send("ok");
+        try {
+            await consulta.execQuery('call sp_fecharchamado(?,?)', [req.params.id, req.body.texto]);
+            res.send('Chamado Finalizado com Sucesso!');
+        }catch(error){
+            res.send('Algo Inesperado Ocorreu :(');
+        }
     }
 
     return { get: get, getChamadoById: getChamadoById, post: post };

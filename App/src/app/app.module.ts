@@ -11,7 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpModule } from '@angular/http';
 import { CallNumber } from '@ionic-native/call-number/ngx';
 
-import { BrMaskerModule } from 'br-mask'
+import { BrMaskerModule } from 'br-mask';
 
 @NgModule({
   declarations: [AppComponent],
