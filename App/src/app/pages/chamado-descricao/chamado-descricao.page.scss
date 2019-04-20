@@ -1,5 +1,7 @@
 ion-textarea{
-    background-color : #ffce00
+    background-color : #ffce00;
+    padding: 0 0 0 0;
+    margin-top: 0
 }
 ion-content{
     height: 100%;
@@ -13,7 +15,7 @@ ion-content{
     background-color : #e05a00;
     text-align: center;
 }
-.footer{
+ion-footer{
     position: relative;
     bottom: 0;
     width: 100%;

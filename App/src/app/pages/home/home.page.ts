@@ -30,7 +30,7 @@ export class HomePage {
   }
 
   ionViewDidLeave() {
-    this.sub.unsubscribe;
+    this.sub.unsubscribe();
   }
 
   changeObj(cham) {
