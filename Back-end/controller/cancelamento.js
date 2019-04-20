@@ -8,9 +8,9 @@ module.exports = (connection) => {
             console.log(body);
             await consulta.execQuery('call sp_respondercancelamento(?, ?, ?, ?)',
             [body.id, body.chamado, body.tec, body.msg]);
-            res.send('Cliente liberado com sucesso!');
+            res.send({msg: 'Dados enviados com sucesso!'});
         } catch (error) {
-            res.send('Problema ao enviar dados :(');
+            res.send({msg: 'Problema ao enviar dados :('});
         }
     }
 

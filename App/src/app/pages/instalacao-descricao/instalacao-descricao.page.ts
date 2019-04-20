@@ -21,31 +21,34 @@ export class InstalacaoDescricaoPage implements OnInit {
     console.log(this.chamado);
   }
 
-  call(n){
+  call(n) {
     this.cn.callNumber(n, true);
   }
 
-  fechar(){
+  fechar() {
     this.chamadoService.liberarCliente(this.chamado.id)
-    .subscribe(data=>{
-      console.log(data);
-      let x = (data as any)._body;
-      x = JSON.parse(x);
-      this.showToast(x.msg);
-    });
-    this.navCtrl.navigateForward("/finalizacao");
+      .subscribe(data => {
+        let x = (data as any)._body;
+        x = JSON.parse(x);
+        this.showToast(x.msg);
+        if (data.status == 214)
+          this.navCtrl.navigateForward("/home");
+        else
+          this.navCtrl.navigateForward("/finalizacao");
+      });
   }
 
   showToast(msg: string) {
     this.toast = this.toastCtrl.create({
       message: msg,
-      duration: 2000
-    }).then((toastData)=>{
+      duration: 2000,
+      position: "middle"
+    }).then((toastData) => {
       console.log(toastData);
       toastData.present();
     });
   }
-  HideToast(){
+  HideToast() {
     this.toast = this.toastCtrl.dismiss();
   }
 

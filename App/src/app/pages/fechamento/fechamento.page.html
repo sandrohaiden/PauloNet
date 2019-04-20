@@ -8,36 +8,37 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-card>
-    <ion-card-content>
-      <ion-textarea [(ngModel)]="texto" text-left placeholder="Digite aqui..."></ion-textarea>
-    </ion-card-content>
-  </ion-card>
-  <br>
   <form [formGroup]="formulario" (ngSubmit)='concluir()'>
+    <ion-card>
+      <ion-card-content>
+        <ion-textarea [(ngModel)]="texto" required text-left placeholder="Digite aqui..."
+        name="desc" formControlName="desc"></ion-textarea>
+      </ion-card-content>
+    </ion-card>
+    <br>
     <ion-item>
       <ion-label position="floating">Download (Mb/s)</ion-label>
-      <ion-input name="download" formControlName="download" inputmode="numeric"
+      <ion-input name="download" formControlName="download" inputmode="numeric" required
         [brmasker]="{form: formulario.get('download'), mask: '00,00', len:5, type: 'num'}"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="floating">Upload (Mb/s)</ion-label>
-      <ion-input name="upload" formControlName="upload" inputmode="numeric"
+      <ion-input name="upload" formControlName="upload" inputmode="numeric" required
         [brmasker]="{form: formulario.get('upload'), mask: '00,00', len:5, type: 'num'}"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="floating">Ping (ms)</ion-label>
-      <ion-input name="ping" formControlName="ping" inputmode="numeric"
+      <ion-input name="ping" formControlName="ping" inputmode="numeric" required
         [brmasker]="{form: formulario.get('ping'), mask: '00000', len:5, type: 'num'}"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="floating">Cabo Inicial (Metros)</ion-label>
-      <ion-input name="inicial" formControlName="inicial" inputmode="numeric"
+      <ion-input name="inicial" formControlName="inicial" inputmode="numeric" required
         [brmasker]="{form: formulario.get('inicial'), mask: '00000', len:5, type: 'num'}"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="floating">Cabo Final (Metros)</ion-label>
-      <ion-input name="final" formControlName="final" inputmode="numeric"
+      <ion-input name="final" formControlName="final" inputmode="numeric" required
         [brmasker]="{form: formulario.get('final'), mask: '00000', len:5, type: 'num'}"></ion-input>
     </ion-item>
 

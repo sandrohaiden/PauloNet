@@ -9,8 +9,8 @@ import { Http } from '@angular/http';
 export class ChamadoService {
 
   public chamado = new Chamado();
-  public chamados: Chamado [];
-  public url = 'http://10.0.0.107:3000/';
+  public chamados: Chamado[];
+  public url = 'http://10.0.0.105:3000/';
 
   public messageSource = new BehaviorSubject(this.chamado);
   currentMessage = this.messageSource.asObservable();
@@ -28,48 +28,29 @@ export class ChamadoService {
     this.fonteChamados.next(chamado);
   }
 
-  getChamados(){
-    return this.http.get(this.url+'chamados?name=JHOSEFE');
+  getChamados() {
+    return this.http.get(this.url + 'chamados?name=JHOSEFE');
   }
 
-  getChamado(){
+  getChamado() {
     console.log(this.url + this.chamado.id);
     return this.http.get(this.url + this.chamado.id);
   }
 
-  fecharChamado(texto: any, id: number){
-    return this.http.post(this.url + 'chamados/' + id, {texto}).subscribe((data: any) =>{
-      this.getChamados().subscribe(chams=>{
-        let x = chams as any
-        console.log(JSON.parse(x._body));
-        this.changeChamados(chams.json());
-      })
-    });
+  fecharChamado(texto: any, id: number) {
+    return this.http.post(this.url + 'chamados/' + id, { texto });
   }
 
-  liberarCliente(id: number){
-    return this.http.post(this.url + 'instalacao/step1/' + id,{});
+  liberarCliente(id: number) {
+    return this.http.post(this.url + 'instalacao/step1/' + id, {});
   }
 
-  finalizarInstalacao(tx: string, id: number){
-    return this.http.post(this.url + 'instalacao/step2/'+id, {tx}).subscribe((data: any) =>{
-      this.getChamados().subscribe(chams=>{
-        let x = chams as any
-        console.log(JSON.parse(x._body));
-        this.changeChamados(chams.json());
-      })
-    });
+  finalizarInstalacao(tx: string, id: number) {
+    return this.http.post(this.url + 'instalacao/step2/' + id, { tx });
   }
 
-  responderCancelamento(body: any){
+  responderCancelamento(body: any) {
     console.log(body);
-    return this.http.post(this.url + 'cancelamento/'+body.id, body)
-    .subscribe((data: any) =>{
-      this.getChamados().subscribe(chams=>{
-        let x = chams as any
-        console.log(JSON.parse(x._body));
-        this.changeChamados(chams.json());
-      })
-    });
+    return this.http.post(this.url + 'cancelamento/' + body.id, body);
   }
 }

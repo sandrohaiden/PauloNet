@@ -11,52 +11,55 @@ import { Subscription } from 'rxjs';
 })
 export class HomePage {
   public chamado: Chamado;
-  public chamados: Chamado[]=[];
+  public chamados: Chamado[] = [];
 
   constructor(public navCtrl: NavController, public chamadoService: ChamadoService,
-    private plat: Platform){}
-    private sub: Subscription;
+    private plat: Platform) { }
+  private sub: Subscription;
 
-  ngOnInit(){
+  ngOnInit() {
     this.chamadoService.currentMessage.subscribe(cham => this.chamado = cham);
     this.chamadoService.chamadosAtual.subscribe(chams => this.chamados = chams);
     this.list();
   }
 
-  ionViewWillEnter(){
-    this.sub = this.plat.backButton.subscribe(()=>{
+  ionViewWillEnter() {
+    this.sub = this.plat.backButton.subscribe(() => {
       navigator[`app`].exitApp();
     })
   }
 
-  ionViewDidLeave(){
+  ionViewDidLeave() {
     this.sub.unsubscribe;
   }
 
-  changeObj(cham){
+  changeObj(cham) {
     this.chamado = cham
     this.chamadoService.changeMessage(this.chamado);
   }
 
-  goToDescricao(cham){
+  goTo(cham) {
     this.changeObj(cham);
-    this.navCtrl.navigateForward('chamado/descricao');
+    if (cham.assunto == 'instalacao')
+      this.navCtrl.navigateForward('/instalacao');
+    else
+      this.navCtrl.navigateForward('chamado/descricao');
   }
 
-  goToInstalacao(cham){
+  goToInstalacao(cham) {
     this.changeObj(cham);
-    this.navCtrl.navigateForward('/instalacao');
+
   }
 
-  list(){
+  list() {
     return this.chamadoService.getChamados()
-    .subscribe(resposta => {
-      console.log('dados da tabela:', resposta);
-      return this.chamados = resposta.json();
-    })
+      .subscribe(resposta => {
+        console.log('dados da tabela:', resposta);
+        return this.chamados = resposta.json();
+      })
   }
 
-  fechar(){
+  fechar() {
     navigator[`app`].exitApp();
   }
 }

@@ -25,9 +25,8 @@
   </ion-grid>
   <ion-list>
     <span *ngFor='let chamado of chamados'>
-
-      <ion-item *ngIf='chamado.assunto !== "instalacao"'>
-        <ion-card (click)="goToDescricao(chamado)">
+      <ion-item >
+        <ion-card (click)="goTo(chamado)">
           <ion-card-content>
             <div>
               {{chamado.assunto}}
@@ -41,23 +40,6 @@
           </ion-card-content>
         </ion-card>
       </ion-item>
-
-      <ion-item *ngIf='chamado.assunto == "instalacao"'>
-        <ion-card (click)="goToInstalacao(chamado)">
-          <ion-card-content>
-            <div>
-              {{chamado.assunto}}
-              <br>
-              {{chamado.nome}}
-              <br>
-              {{chamado.bairro}}
-              <br>
-              {{chamado.visita}}
-            </div>
-          </ion-card-content>
-        </ion-card>
-      </ion-item>
-      
     </span>
   </ion-list>
 </ion-content>

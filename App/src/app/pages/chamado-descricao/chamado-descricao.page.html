@@ -72,7 +72,7 @@
   <br>
   <div *ngFor="let mss of chamado.msg; let i = index" [attr.data-index]="i">
     <div class="nota">
-      <ion-label>Observação {{i + 1}}:</ion-label>
+      <ion-label>Mensagem {{i + 1}}</ion-label>
       <br>
     </div>
     <ion-textarea rows="4" readonly value={{mss.msg}}>

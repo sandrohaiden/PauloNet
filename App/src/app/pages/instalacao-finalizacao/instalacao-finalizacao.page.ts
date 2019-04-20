@@ -44,22 +44,35 @@ export class InstalacaoFinalizacaoPage implements OnInit {
       let tx = '\nDownload: ' + vl.download + '  |  Upload:' + vl.upload
         + '  |  Ping: ' + vl.ping + '  |  Cabo Início: ' + vl.inicial + '  |  Cabo fim: ' + vl.final;
 
-      this.chamadoService.finalizarInstalacao(tx, this.chamado.id);
-      this.navCtrl.navigateRoot('/home');
+      this.chamadoService.finalizarInstalacao(tx, this.chamado.id)
+        .subscribe((data: any) => {
+          let x = (data as any)._body;
+          x = JSON.parse(x);
+          this.showToast(x.msg);
+          this.chamadoService.getChamados().subscribe(chams => {
+            let x = chams as any
+            console.log(JSON.parse(x._body));
+            this.chamadoService.changeChamados(chams.json());
+          })
+          if (data.status != 214)
+            this.navCtrl.navigateRoot('/home');
+        });
+
     }
   }
 
   showToast(msg: string) {
     this.toast = this.toastCtrl.create({
       message: msg,
-      duration: 2000
-    }).then((toastData)=>{
+      duration: 2000,
+      position: "middle"
+    }).then((toastData) => {
       console.log(toastData);
       toastData.present();
     });
   }
 
-  HideToast(){
+  HideToast() {
     this.toast = this.toastCtrl.dismiss();
   }
 

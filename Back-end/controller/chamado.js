@@ -23,9 +23,9 @@ module.exports = (connection) => {
     async function post(req, res, next) {
         try {
             await consulta.execQuery('call sp_fecharchamado(?,?)', [req.params.id, req.body.texto]);
-            res.send('Chamado Finalizado com Sucesso!');
+            res.send({msg:'Chamado Finalizado com Sucesso!'});
         }catch(error){
-            res.send('Algo Inesperado Ocorreu :(');
+            res.status(214).send({msg: 'Algo Inesperado Ocorreu :('});
         }
     }
 
